@@ -1,0 +1,25 @@
+apiVersion: cpe.cogadvisor.io/v1
+kind: Benchmark
+metadata:
+  name: stressng
+  namespace: my-ripsaw
+spec:
+  benchmarkOperator:
+    name: ripsaw
+    namespace: default
+  benchmarkSpec: |
+    metadata:
+      collection: false
+    workload:
+      name: stressng
+      args:
+        runtype: parallel
+        timeout: 480
+        instances: 1
+        cpu_stressors: 32
+        cpu_percentage: 100
+  iterationSpec:
+    iterations:
+    - name: cpu_percentage
+      location: .workload.args.cpu_percentage
+    sequential: true
